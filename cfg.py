@@ -85,7 +85,7 @@ cfg.mech_changes = {
 }
 
 # Update via batchtools
-cfg.update_cfg()
+
 
 cfg.simLabel = (
     f'sim_{POP_ACTIVE}_{cfg.mech_changes["mech"]}'

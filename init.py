@@ -165,37 +165,3 @@ sim.saveData()
 sim.analysis.plotData()    # plot spike raster etc
 
 # Finalize
-if comm.is_host():
-    #netParams.save("{}/{}_params.json".format(cfg.saveFolder, cfg.simLabel))
-    print('transmitting data...')
-    inputs = specs.get_mappings()
-    
-    # Save average firing rates to a separate json file
-    avgRates = sim.analysis.popAvgRates(
-        tranges=[cfg.duration - 1000, cfg.duration],
-        show=False
-    )
-    fpath_res = '{}/{}_result.json'.format(cfg.saveFolder, cfg.simLabel)
-    with open(fpath_res, 'w') as fid:
-        json.dump({'rates': avgRates}, fid, indent=4)
-    
-    # Save controller data
-    if ctrl_dict is not None:
-        fpath_res = '{}/{}_ctrl.pkl'.format(cfg.saveFolder, cfg.simLabel)
-        with open(fpath_res, 'wb') as fid:
-            pkl.dump(ctrl_dict, fid)
-
-    # Plot controller signals and save the figures
-    if ctrl_dict is not None:
-        bs.plot_save_ctrl_traces(sim, ctrl_dict)
-    
-    # Experiment-specific result processing
-    # TODO
-
-    avgRates['loss'] = 700
-    out_json = json.dumps({**inputs, **avgRates})
-    comm.send(out_json)
-    comm.close()
-
-    # Plot and save f-I curves
-    post_run(sim)

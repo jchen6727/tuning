@@ -81,7 +81,7 @@ cfg.mech_changes = {
     'sec': 'all',
     'mech': 'kdr',
     'par': 'gbar',
-    'mult': 3
+    'mult': 1
 }
 
 # Update via batchtools

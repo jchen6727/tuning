@@ -145,7 +145,7 @@ print(f'Rank {sim.rank}: running...', flush=True)
 sim.runSim()               # run parallel Neuron simulation
 #if sim.rank == 0:
 #    print(f'Gathering the results...', flush=True)
-sim.gatherData()
+sim.gatherData() # apparently THIS is the thing that actually prints out the rate data...
 
 # Gather OUFlags
 """ if sim.cfg.add_ou_conductance:

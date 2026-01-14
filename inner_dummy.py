@@ -12,10 +12,12 @@ from concurrent.futures import ThreadPoolExecutor
 from collections import namedtuple
 import pandas
 
+import json
+
 outer_cfg = RunConfig()
 
 outer_cfg['label'] = 0
-outer_cfg['batch_num'] = 0
+outer_cfg['batch_id'] = 0
 outer_cfg['multiply_parameters'] = {
     'kdr0': {'factor': 1},
     'cal0': {'factor': 1},
@@ -80,4 +82,4 @@ message = {
 
 
 with get_comm() as comm: # communicate results back to outer optuna script --
-    comm.send(message)
+    comm.send(json.dumps(message))

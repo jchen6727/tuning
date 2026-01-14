@@ -15,5 +15,5 @@ script_template = """\
 {env}
 source ~/.bashrc
 
-mpiexec -n 4 nrniv -python -mpi {script}
+mpiexec -n $NSLOTS -hosts $(hostname) nrniv -python -mpi {script}
 """

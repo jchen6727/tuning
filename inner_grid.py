@@ -14,7 +14,7 @@ from collections import namedtuple
 import pandas, json
 
 
-parser = TomlParser(file_path='zsh_submit.toml')
+parser = TomlParser(file_path='sge_submit.toml')
 Submit = parser.get_submit_class()
 
 path = os.getcwd()
@@ -79,7 +79,7 @@ def eval_script(job):
         output_dir=f"./batch/{outer_label}",
         submit_constructor=Submit, #ZSHSubmitSFS ?, # running on the hpc where the zsh requires some mpi finagling.
         dispatcher_kwargs=None,
-        submit_kwargs={'command': 'mpiexec -np 5 nrniv -python -mpi init.py'},
+        submit_kwargs={'script: init.py'},
         interval=1,
         storage_constructor=None,
         #storage_kwargs=storage_kwargs, # for now no checkpointing

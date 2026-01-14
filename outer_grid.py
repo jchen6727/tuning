@@ -15,7 +15,7 @@ param_space = {
     'multiply_parameters.cal0.factor': [0.5, 1.5],
 }
 
-parser = TomlParser(file_path='zsh_submit.toml')
+parser = TomlParser(file_path='sh_submit.toml')
 Submit = parser.get_submit_class()
 
 storage_kwargs = dict(label='trials', directory='./batch',
@@ -46,7 +46,7 @@ def eval_inner(job):
         output_dir='./batch',
         submit_constructor=Submit, #ZSHSubmitSFS ?, # running on the hpc where the zsh requires some mpi finagling.
         dispatcher_kwargs=None,
-        submit_kwargs={'command': 'python inner_grid.py'}, # nested, external optimizer considers both parameters, internal performs 2 operations.
+        submit_kwargs={'script': 'inner_grid.py'}, # nested, external optimizer considers both parameters, internal performs 2 operations.
         interval=1,
         storage_kwargs=storage_kwargs,
         report=('path', 'data'),

@@ -7,5 +7,5 @@ script_template = """\
 {env}
 source ~/.bashrc
 
-nohup python inner_grid.py > {stdout} 2>&1
+nohup python {script} > {stdout} 2>&1
 """
